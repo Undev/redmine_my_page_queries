@@ -40,7 +40,7 @@ custom_issues = @query.nil? ? [] : @query.issues(:include => [:assigned_to, :tra
 </span><span style="display:inline-block"><a href="#" onclick="var ele = document.getElementById('<%= issue_query %>_form'); if(ele.style.display=='none') { ele.style.display='' } else { ele.style.display='none' }"><%= t(:issue_query_modify) %></a></span>
 <div style="display:none" id="<%= issue_query %>_form">
 
-<%= form_tag("/my", :id => "block-form", :method => :get ) do %>
+<%= form_tag(".", :id => "block-form", :method => :get ) do %>
 <table>
   <tr>
     <td>
