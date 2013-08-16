@@ -16,7 +16,7 @@ class QueryPresenter < SimpleDelegator
   def link(title)
     url_opts = { :controller => 'issues',
                  :action => 'index',
-                 :query_id => id }
+                 :query_id => self[:id] }
     url_opts[:project_id] = project.id unless project.nil?
     @view.link_to title, url_opts
   end
@@ -68,7 +68,7 @@ class QueryPresenter < SimpleDelegator
   def limit_links
     limits = available_limits.map do |q_limit|
       @view.link_to q_limit,
-                    @view.update_query_block_path(id, :query => { :limit => q_limit }),
+                    @view.update_query_block_path(self[:id], :query => { :limit => q_limit }),
                     :method => 'put',
                     :remote => true
     end.join(', ').html_safe
@@ -81,14 +81,14 @@ class QueryPresenter < SimpleDelegator
       links << @view.l(:my_page_query_compact)
       links << @view.link_to(@view.l(:my_page_query_full),
                         @view.update_query_block_path(
-                            id,
+                            self[:id],
                             :query => { :compact_view => false }),
                         :method => 'put',
                         :remote => true)
     else
       links << @view.link_to(l(:my_page_query_compact),
                              @view.update_query_block_path(
-                                 id,
+                                 self[:id],
                                  :query => { :compact_view => true }),
                              :method => 'put',
                              :remote => true)
@@ -102,7 +102,7 @@ class QueryPresenter < SimpleDelegator
   end
 
   def pref_key
-    "query_#{id}".to_sym
+    "query_#{self[:id]}".to_sym
   end
 
 end

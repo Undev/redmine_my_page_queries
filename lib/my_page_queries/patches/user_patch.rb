@@ -1,4 +1,3 @@
-require 'project'
 require 'principal'
 require 'user'
 
