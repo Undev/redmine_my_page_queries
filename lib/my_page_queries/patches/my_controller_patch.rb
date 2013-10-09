@@ -36,6 +36,7 @@ module MyPageQueries::Patches::MyControllerPatch
   def page_layout_with_queries
     page_layout_without_queries
     @user.visible_queries.each do |q|
+	  next if @blocks.map{ |key, value| value}.flatten.include? "query_#{q.id}"
       q_name = q.project ? "#{q.name} (#{q.project})" : q.name
       @block_options << [q_name, "query_#{q.id}"]
     end

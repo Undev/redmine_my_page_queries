@@ -1,0 +1,5 @@
+de:
+  button_default_layout: "Standard wiederherstellen"
+  my_page_query_limit: "Nur %{limits} anzeigen"
+  my_page_query_compact: "Kompaktansicht"
+  my_page_query_full: "Erweiterte Ansicht"

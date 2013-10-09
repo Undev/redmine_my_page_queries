@@ -10,7 +10,9 @@ class QueryPresenter < SimpleDelegator
   end
 
   def title
-    "#{name} (#{issue_count})"
+	title = @view.link_to "#{name}", { :controller => 'issues', :action => 'index', :query_id => self[:id] }
+	title << " (#{issue_count})"
+	title
   end
 
   def link(title)
@@ -37,7 +39,6 @@ class QueryPresenter < SimpleDelegator
 
   def pagination_links
     [
-        link(@view.l(:label_issue_view_all)),
         limit_links,
         view_format_links
     ].join(' | ').html_safe
