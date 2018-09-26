@@ -5,10 +5,10 @@ ActionDispatch::Callbacks.to_prepare do
 end
 
 Redmine::Plugin.register :redmine_my_page_queries do
-  name 'MyPage custom queries'
-  description 'Adds custom queries onto My Page screen'
-  version '2.1.7'
-  author 'Restream'
-  author_url 'https://github.com/Restream'
-  url 'https://github.com/Restream/redmine_my_page_queries'
+  name 'MyPage custom queries for Redmine 3.4.x'
+  description 'Adds custom queries onto My Page screen for Redmine 3.4.x'
+  version '2.2.0'
+  author 'Nagasawa'
+  author_url 'https://github.com/minoru-nagasawa/'
+  url 'https://github.com/minoru-nagasawa/redmine_my_page_queries'
 end

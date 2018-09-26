@@ -28,9 +28,8 @@ class QueryPresenter < SimpleDelegator
 
   def issues(options = {})
     options.merge!(
-      include: [:assigned_to, :tracker, :priority, :category, :fixed_version],
       limit:   limit,
-      order:   sort_criteria.to_sql
+      order:   sort_criteria.sort_clause(sortable_columns)
     )
     super(options)
   end
@@ -54,21 +53,38 @@ class QueryPresenter < SimpleDelegator
 
   def sort_criteria
     @sort_criteria ||= begin
-      sort_criteria_attr          = __getobj__.sort_criteria
-      query_criteria              = sort_criteria_attr.empty? ? [%w(id desc)] : sort_criteria_attr
-      criteria                    = SortCriteria.new
-      criteria.available_criteria = sortable_columns
-      criteria.from_param(pref_options[:sort])
-      criteria.criteria = query_criteria if criteria.empty?
+      criteria = Redmine::SortCriteria.new(pref_options[:sort])
       criteria
     end
   end
 
-  def column_header(column)
-    column.sortable ?
-      sort_header_tag(column.name.to_s, caption: column.caption,
-                      default_order:             column.default_order) :
-      @view.content_tag('th', column.caption)
+  def column_header(query, column, options={})
+    if column.sortable?
+      css, order = nil, column.default_order
+      if column.name.to_s == query.sort_criteria.first_key
+        if query.sort_criteria.first_asc?
+          css = 'sort asc'
+          order = 'desc'
+        else
+          css = 'sort desc'
+          order = 'asc'
+        end
+      end
+      param_key = options[:sort_param] || :sort
+      sort_param = { param_key => query.sort_criteria.add(column.name, order).to_param }
+      while sort_param.keys.first.to_s =~ /^(.+)\[(.+)\]$/
+        sort_param = {$1 => {$2 => sort_param.values.first}}
+      end             
+      url_options = @view.update_query_block_path(self[:id], query: sort_param)
+      content = @view.link_to(column.caption,
+                              url_options,
+                              method: 'put',
+                              remote: true,
+                              class:  css)
+    else
+      content = column.caption
+    end
+    @view.content_tag('th', content)
   end
 
   private

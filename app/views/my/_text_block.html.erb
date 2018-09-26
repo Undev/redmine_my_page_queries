@@ -1,3 +1,9 @@
+<div class="contextual">
+  <%= link_to l(:label_options), '#',
+              class: 'edit-my-page-text icon-only icon-settings',
+              data:  { text: text, url: update_text_block_path(block_name) },
+              title: l(:label_options) %>
+</div>
 <div id="my_page_<%= block_name %>">
   <%= render 'my/text', text: text, block_name: block_name %>
 </div>

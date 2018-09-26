@@ -1,20 +1,20 @@
 # Redmine My Page Queries
 
-[![Build Status](https://travis-ci.org/Restream/redmine_my_page_queries.svg?branch=master)](https://travis-ci.org/Restream/redmine_my_page_queries)
-[![Code Climate](https://codeclimate.com/github/Restream/redmine_my_page_queries.png)](https://codeclimate.com/github/Restream/redmine_my_page_queries)
+[![Build Status](https://travis-ci.org/minoru-nagasawa/redmine_my_page_queries.svg?branch=master)](https://travis-ci.org/minoru-nagasawa/redmine_my_page_queries)
+[![Code Climate](https://codeclimate.com/github/minoru-nagasawa/redmine_my_page_queries.png)](https://codeclimate.com/github/minoru-nagasawa/redmine_my_page_queries)
 
 This plugin enhances **My page** screen in Redmine with the following blocks:
 
 * **My custom queries** block
 * Separate blocks for each query with either compact or extended view
-* **Restore default** button to reset the screen layout
 * **Text** block to add custom text
 
 The initial author is [ALVILA](https://github.com/alvila/redmine_my_page_queries).
 
 ## Compatibility
 
-This plugin version is compatible with Redmine 3.x.
+This plugin version is compatible with Redmine 3.4.x.  
+Before version 3.3 is here. (https://github.com/Restream/redmine_my_page_queries)
 
 ## Installation
 
@@ -58,8 +58,6 @@ The **Queries from my projects** section in the drop-down list contains all publ
 
 You can switch between a compact and extended view by clicking the corresponding links.  
 ![compact and extended view](doc/my_page_queries_2.png)
-
-To reset the layout of the **My page** screen, click **Restore default**.
 
 ## Maintainers
 

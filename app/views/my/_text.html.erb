@@ -1,10 +1,1 @@
-<% unless action_name == 'page' %>
-  <h3>
-    <div class="my-page-text-edit-button">
-      <%= link_to l(:button_edit), '#',
-                  class: 'edit-my-page-text',
-                  data:  { text: text, url: update_text_block_path(block_name) } %>
-    </div>
-  </h3>
-<% end %>
 <%= textilizable text %>
